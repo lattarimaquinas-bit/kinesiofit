@@ -28,6 +28,14 @@ const DATOS = {
   mapa: "", // Link de Google Maps del consultorio. Opcional pero muy útil.
   horario: "Lunes a viernes de 8 a 12 y de 15 a 18 hs",
 
+  // ---- Fotos del consultorio ----------------------------------------------
+  // Van en "Dónde estoy". Son las fotos del lugar: el que va a consultar quiere
+  // ver a dónde viene antes de salir de su casa.
+  //
+  // Rutas relativas a esta misma carpeta. Si no hay ninguna, la galería
+  // disappears sola y no queda un hueco raro.
+  fotosConsultorio: ["imagenes/consultorio-1.jpg"],
+
   // ---- Qué ofrece ---------------------------------------------------------
   titular: "Kinesiofit",
   bajada:
@@ -70,6 +78,37 @@ if (conFoto) {
   } else {
     conFoto.hidden = true;
   }
+}
+
+/* Las fotos del consultorio.
+ *
+ * Solo se muestran las que existen de verdad: si una falta, el hueco se oculta
+ * en vez de dejar un cuadrito con una cruz, que en una página de un consultorio
+ * se ve como si algo estuviera roto. */
+const fotos = d.fotosConsultorio || [];
+const cajaFotos = document.querySelector("[data-fotos]");
+if (cajaFotos) {
+  const utiles = fotos.filter((ruta) => {
+    const existe = document.createElement("img");
+    existe.src = ruta;
+    return existe;
+  });
+  cajaFotos.replaceChildren(
+    ...utiles.map((ruta, i) => {
+      const figura = document.createElement("figure");
+      figura.className = "foto-consultorio";
+      const imagen = document.createElement("img");
+      imagen.src = ruta;
+      imagen.alt = i === 0
+        ? "Recepción del consultorio"
+        : "Sala de espera del consultorio";
+      imagen.loading = "lazy";
+      imagen.addEventListener("error", () => figura.remove());
+      figura.appendChild(imagen);
+      return figura;
+    })
+  );
+  cajaFotos.hidden = !cajaFotos.children.length;
 }
 
 const firma = document.querySelector("#firma");

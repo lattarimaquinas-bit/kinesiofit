@@ -440,7 +440,7 @@ main > section.alternado {
 }
 
 .columnas-turno {
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 }
 
 /* ---- Tarjetas ----------------------------------------------------------- */
@@ -837,4 +837,40 @@ footer p {
   width: min(280px, 62vw);
   height: auto;
   margin: 0 auto 1.5rem;
+}
+
+/* --- fotos del consultorio ---
+
+ * Van debajo de la dirección, en la parte de "Dónde estoy". Son las dos cosas
+ * que el paciente quiere saber antes de salir: a dónde ir y cómo es el lugar.
+ *
+ * En la computadora se muestran una al lado de la otra; en el celular, apiladas.
+ * Se estiran a lo ancho para que se vea el consultorio entero y no un recorte. */
+.galeria-consultorio {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 0.8rem;
+  margin-top: 1.6rem;
+}
+.galeria-consultorio[hidden] { display: none; }
+
+.foto-consultorio {
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--linea);
+  border-radius: 14px;
+  background: var(--arena);
+}
+.foto-consultorio img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  /* La foto es vertical y lo que importa está en la parte de arriba: el logo
+     de la pared y el mostrador. Con "cover" y centrado se vería el techo. */
+  object-fit: cover;
+  object-position: center 35%;
+}
+
+@media (max-width: 700px) {
+  .galeria-consultorio { grid-template-columns: 1fr; }
 }
