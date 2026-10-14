@@ -1,0 +1,122 @@
+═══════════════════════════════════════════════════════════════════════
+  PÁGINA DE KINESIOLOGÍA — cómo completarla y publicarla
+═══════════════════════════════════════════════════════════════════════
+
+Son cuatro archivos:
+
+    index.html    la página (los textos están fijos)
+    estilos.css   el diseño
+    datos.js      TUS DATOS — casi todo lo que tenés que tocar está acá
+    animar.js     el movimiento de la página. No hace falta tocarlo nunca
+
+Para cambiar algo no hace falta abrir nada más: se edita datos.js y se
+guarda. Después se recarga la página (⌘ + R) y se ve al instante.
+
+
+───────────────────────────────────────────────────────────────────────
+  1. COMPLETAR LOS DATOS
+───────────────────────────────────────────────────────────────────────
+
+Abrí  datos.js  y rellená lo que dice <<CAMBIAR>>:
+
+    nombre                 Tu nombre. Sale en el título grande de la página.
+    titulo                 "Lic. en Kinesiología" u otro, si te corresponde.
+    matricula              Número de matrícula, si lo tenés a mano. Opcional.
+    whatsapp               SOLO el número, con 54 y sin el 0 ni espacios.
+                           Ejemplo:  5493412345678
+                           Si el tuyo es 341 123-4567 de Rosario, va
+                           5493412345678.
+    telefono               Como se escribe, con los guiones.
+                           Ejemplo:  341-123-4567
+    email                  Tu email, para que te lleguen los mensajes del
+                           formulario.
+    direccion              Calle y número del consultorio.
+    ciudad                 Barrio y ciudad.
+    mapa                   Link de Google Maps del consultorio.
+                           Para tenerlo: abrís Google Maps, vas al consultorio,
+                           tocás "Compartir" y copiás el link.
+    horario                Ejemplo:  "Lunes a viernes de 8 a 20 hs"
+    foto                   Si tenés una foto tuya o del consultorio, poné la
+                           ruta. Ejemplo:  foto.jpg
+                           (y dejá el archivo al lado de index.html)
+
+Lo que no lo completes no rompe nada: la parte esa de la página no se muestra
+y el botón queda apagado. Abajo del todo aparece un aviso amarillo que dice
+qué falta, para acordarte. Cuando complete todo, ese aviso desaparece solo.
+
+Para poner una foto hay que dejar el archivo en esta misma carpeta y escribir
+foto: "foto.jpg" en datos.js.
+
+
+───────────────────────────────────────────────────────────────────────
+  2. VER CÓMO QUEDA, SIN PUBLICAR NADA
+───────────────────────────────────────────────────────────────────────
+
+Doble clic en  index.html  y se abre en el navegador. Listo.
+
+Para ver cómo se ve en el celular: en Chrome, botón de los tres puntitos →
+"Ver en computadora"... al revés. En el celular no se puede desde la Mac, pero
+la página está pensada para el celular: probala desde el celu una vez que esté
+publicada.
+
+
+───────────────────────────────────────────────────────────────────────
+  3. PUBLICARLA EN INTERNET (gratis)
+───────────────────────────────────────────────────────────────────────
+
+La forma más fácil, en cinco minutos y sin pagar nada:
+
+    NETLIFY DROP
+    1) Entrá a   https://app.netlify.com/drop
+    2) Arrastrá esta CARPETA entera (los tres archivos) a la pantalla.
+    3) Te da una dirección tipo  https://algo-raro-123.netlify.app
+    4) Con esa dirección ya tenés página pública en internet.
+
+    Si después querés una dirección propia (ej:  tunombre.com.ar), en Netlify
+    va a Site settings → Domain management → Add a custom domain. Ahí te dice
+    que datos poner en el dominio, y ya está.
+
+    OTRA OPCIÓN:  https://github.com  (subir los archivos a un repositorio y
+    activar GitHub Pages). Da la misma cosa gratis.
+
+Nada de esto pide tarjeta ni datos personales más allá de un email.
+
+
+───────────────────────────────────────────────────────────────────────
+  4. EL FORMULARIO
+───────────────────────────────────────────────────────────────────────
+
+El formulario de la sección "Pedir turno" funciona de dos maneras, según cómo
+esté configurado en datos.js:
+
+    · Sin configurar (como está ahora)
+      Arma el mensaje y abre WhatsApp con el texto ya escrito. La persona
+      solo tiene que apretar "enviar". Funciona desde el primer día, sin
+      contratar nada.
+
+    · Con un destino de verdad
+      Si en datos.js ponés algo en  formularioEndpoint  (por ejemplo, el
+      enlace que te da Formspree al crear un formulario en
+      https://formspree.io), el mensaje te llega al email que le hayas puesto
+      a ese servicio.
+
+Lo primero ya sirve. Lo segundo es mejor si querés que la gente pueda
+escribirte sin usar WhatsApp.
+
+
+───────────────────────────────────────────────────────────────────────
+  5. SI QUERÉS QUE LOS MENSAJES LLEGUEN AL EMAIL
+───────────────────────────────────────────────────────────────────────
+
+    1) Entrá a   https://formspree.io   y creá una cuenta gratis.
+    2) Creá un formulario nuevo y apuntá a tu email.
+    3) Te dan una dirección parecida a
+       https://formspree.io/f/abcdefg
+    4) Copiá esa dirección en datos.js, en la línea  formularioEndpoint:
+
+           formularioEndpoint: "https://formspree.io/f/abcdefg",
+
+    5) Guardá y recargá. Ya no depende de WhatsApp.
+
+
+═══════════════════════════════════════════════════════════════════════

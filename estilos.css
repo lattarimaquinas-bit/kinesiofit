@@ -1,0 +1,840 @@
+/* ============================================================================
+   KINESIOLOGÍA — hoja de estilo del modelo "moderna"
+   ----------------------------------------------------------------------------
+   Tres ideas guan la página:
+
+   1) Aire. Todo tiene mucho margen alrededor. Una página de salud tiene que
+      parecía tranquila antes de que la persona lea un solo renglón.
+   2) Verde tranquilo. El verde de los dolores hoy es de sala de hospital. Este
+      es más apagado, del verde de una planta, que es lo que una persona que va
+      a kinesiología debería estar mirando.
+   3) Se lee en el celular primero. Casi toda la gente que busca un profesional
+      lo hace desde el teléfono, y con la pantalla en la mano al lado del sillón.
+
+   Sin librerías de internet: la página tiene que andar sin conexión y cuando
+      la suben a internet, sin que ande a pedo de otro servidor.
+   ========================================================================== */
+
+:root {
+  /* Los colores, todos en un solo lugar para poder cambiar el tono de la
+     página entera tocando cinco líneas. */
+  --tinta: #3d4147;
+  --tinta-suave: #6d737c;
+  --verde: #f08a00;
+  --verde-claro: #fdf0dd;
+  --verde-tenue: #fefaf3;
+  --crema: #ffffff;
+  --arena: #f6f6f5;
+  --blanco: #ffffff;
+  --linea: #e7e5e1;
+  --acento: #6d737c;
+
+  --radio: 18px;
+  --radio-chico: 12px;
+  --sombra: 0 1px 2px rgba(18, 51, 45, 0.04), 0 8px 24px rgba(18, 51, 45, 0.06);
+  --sombra-alta: 0 2px 4px rgba(18, 51, 45, 0.06), 0 18px 44px rgba(18, 51, 45, 0.1);
+
+  --ancho: 1120px;
+  --borde: 1px solid var(--linea);
+}
+
+/* ---- Base --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* El atributo hidden es lo que decide qué se ve y qué no. Pero si el CSS de
+   abajo le pone display a un elemento (por ejemplo img { display: block }), le
+   gana al hidden del navegador y el elemento sigue ahí. Por eso el hidden gana
+   siempre, en un solo lugar, y no hay que acordarse en cada bloque. */
+[hidden] {
+  display: none !important;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Si se hace scroll a una sección, el título no queda debajo de la barra
+     de arriba, que queda pegada. */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--crema);
+  color: var(--tinta);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0 0 0.6em;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 6vw, 3.6rem);
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.6vw, 2.4rem);
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0 0 1.1em;
+}
+
+a {
+  color: var(--verde);
+}
+
+.contenedor {
+  width: min(100% - 2.5rem, var(--ancho));
+  margin-inline: auto;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.saltear {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--verde);
+  color: #fff;
+  padding: 0.7rem 1.1rem;
+  border-radius: 0 0 var(--radio-chico) 0;
+  z-index: 100;
+}
+.saltear:focus {
+  left: 0;
+}
+
+.enlace {
+  color: var(--verde);
+  text-decoration: none;
+  border-bottom: 1.5px solid rgba(13, 122, 111, 0.32);
+  transition: border-color 0.2s ease, color 0.2s ease;
+}
+.enlace:hover {
+  border-bottom-color: var(--verde);
+  color: #0a6157;
+}
+
+/* La palabra clave que se ve más, en la parte de arriba de cada sección. */
+.antetitulo {
+  margin: 0 0 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--verde);
+}
+
+.destacado {
+  font-size: 1.15rem;
+  color: var(--tinta);
+  font-weight: 500;
+}
+
+.nota {
+  color: var(--tinta-suave);
+  font-size: 0.95rem;
+}
+
+/* ---- Botones ------------------------------------------------------------ */
+
+.boton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.4rem;
+  border-radius: 999px;
+  border: var(--borde);
+  background: var(--blanco);
+  color: var(--tinta);
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, box-shadow 0.18s ease,
+    background-color 0.18s ease, border-color 0.18s ease;
+}
+
+.boton-icono {
+  display: grid;
+  place-items: center;
+  width: 1.15em;
+  height: 1.15em;
+}
+.boton-icono svg {
+  width: 100%;
+  height: 100%;
+}
+
+.boton-grande {
+  background: var(--verde);
+  border-color: var(--verde);
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(13, 122, 111, 0.22);
+}
+
+.boton-linea {
+  background: transparent;
+  color: var(--verde);
+  border-color: rgba(13, 122, 111, 0.35);
+}
+.boton-linea:hover {
+  background: var(--verde-claro);
+  border-color: var(--verde);
+}
+
+.boton-chico {
+  padding: 0.6rem 1.05rem;
+  font-size: 0.95rem;
+}
+
+.boton:hover {
+  transform: translateY(-2px);
+}
+.boton-grande:hover {
+  background: #0a6b61;
+  box-shadow: 0 12px 26px rgba(13, 122, 111, 0.28);
+}
+.boton-linea:hover {
+  background: var(--verde-claro);
+}
+
+/* Un botón sin dato no manda a ningún lado: se ve apagado en vez de llevar a
+   un link roto. datos.js le pone data-falta cuando falta algo. */
+.boton[data-falta] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ---- Portada ------------------------------------------------------------ */
+
+.portada {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(170deg, var(--verde-tenue), var(--crema) 70%);
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3rem, 6vw, 4.5rem);
+}
+
+/* Dos manchas de luz de fondo. Son decorativas: dan profundidad sin que se
+   note que están. */
+.portada-luz {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(38rem 26rem at 12% 8%, rgba(13, 122, 111, 0.13), transparent 62%),
+    radial-gradient(32rem 24rem at 88% 18%, rgba(217, 154, 58, 0.12), transparent 60%);
+}
+
+.portada-caja {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.35fr 1fr;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+.etiqueta {
+  display: inline-block;
+  margin: 0 0 1rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: var(--verde-claro);
+  color: var(--verde);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.firma {
+  margin: 0 0 1.2rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--verde);
+}
+
+.matricula {
+  margin: -0.9rem 0 1.2rem;
+  font-size: 0.9rem;
+  color: var(--tinta-suave);
+}
+
+.bajada {
+  max-width: 34rem;
+  font-size: 1.15rem;
+  color: var(--tinta-suave);
+}
+
+.portada .botones {
+  margin-top: 1.8rem;
+}
+
+.horario {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 1.4rem 0 0.2rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--tinta);
+}
+
+.punto {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+  background: var(--verde);
+  box-shadow: 0 0 0 4px rgba(13, 122, 111, 0.16);
+}
+
+.telefono-visible {
+  margin: 0;
+  font-size: 1rem;
+}
+
+/* El retrato: si no hay foto, queda un círculo con una silueta y no un hueco
+   vacío en medio de la portada. */
+.portada-retrato {
+  display: flex;
+  justify-content: center;
+}
+
+.retrato-marco {
+  position: relative;
+  width: min(100%, 22rem);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  padding: 0.7rem;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(13, 122, 111, 0.16);
+  box-shadow: var(--sombra-alta);
+}
+
+.retrato {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  background: var(--verde-claro);
+}
+
+.retrato-lugar {
+  position: absolute;
+  inset: 0.7rem;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: linear-gradient(160deg, var(--verde-claro), var(--arena));
+  color: var(--verde);
+  opacity: 0.55;
+}
+.retrato-lugar svg {
+  width: 42%;
+  height: 42%;
+}
+
+/* Con foto cargada, la silueta se esconde. datos.js pone hidden en la img, pero
+   el div es suyo: se oculta por CSS para no depender de eso. */
+.retrato:not([hidden]) + .retrato-lugar {
+  display: none;
+}
+
+/* ---- Barra de navegación ------------------------------------------------ */
+
+.barra {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: rgba(251, 250, 246, 0.82);
+  backdrop-filter: blur(12px);
+  border-bottom: var(--borde);
+}
+
+.barra-caja {
+  display: flex;
+  gap: 0.35rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.barra-caja::-webkit-scrollbar {
+  display: none;
+}
+
+.barra a {
+  position: relative;
+  padding: 1.05rem 0.95rem;
+  color: var(--tinta-suave);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: color 0.2s ease;
+}
+.barra a::after {
+  content: "";
+  position: absolute;
+  left: 0.95rem;
+  right: 0.95rem;
+  bottom: 0.7rem;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--verde);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+.barra a:hover {
+  color: var(--tinta);
+}
+.barra a.activo {
+  color: var(--verde);
+}
+.barra a.activo::after {
+  transform: scaleX(1);
+}
+
+/* ---- Secciones ---------------------------------------------------------- */
+
+main > section {
+  padding: clamp(3.2rem, 7vw, 5.5rem) 0;
+}
+
+main > section.alternado {
+  background: var(--blanco);
+  border-block: var(--borde);
+}
+
+.seccion-cabecera {
+  max-width: 40rem;
+  margin-bottom: 2.4rem;
+}
+
+.columnas {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: clamp(2rem, 4.5vw, 3.5rem);
+  align-items: start;
+}
+
+.columnas-turno {
+  grid-template-columns: 1fr 1fr;
+}
+
+/* ---- Tarjetas ----------------------------------------------------------- */
+
+.tarjeta {
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: var(--radio);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--sombra);
+}
+
+.tarjeta h3 {
+  margin-bottom: 0.7rem;
+}
+
+.rejilla {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.15rem;
+}
+
+.rejilla .tarjeta {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.rejilla .tarjeta:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--sombra-alta);
+  border-color: rgba(13, 122, 111, 0.28);
+}
+
+.rejilla .tarjeta p {
+  margin: 0;
+  color: var(--tinta-suave);
+  font-size: 0.98rem;
+}
+
+.marca {
+  display: grid;
+  place-items: center;
+  width: 2.9rem;
+  height: 2.9rem;
+  margin-bottom: 1rem;
+  border-radius: var(--radio-chico);
+  background: var(--verde-claro);
+  color: var(--verde);
+}
+.marca svg {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
+/* ---- Cómo es el tratamiento, en pasos ----------------------------------- */
+
+.tarjeta-pasos {
+  background: var(--verde-tenue);
+  border-color: rgba(13, 122, 111, 0.18);
+}
+
+.pasos {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 1.1rem;
+  counter-reset: paso;
+}
+
+.pasos li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.85rem;
+  align-items: start;
+}
+
+.pasos p {
+  margin: 0.15rem 0 0;
+  color: var(--tinta-suave);
+  font-size: 0.97rem;
+}
+
+.paso-num {
+  display: grid;
+  place-items: center;
+  width: 1.85rem;
+  height: 1.85rem;
+  border-radius: 50%;
+  background: var(--verde);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  box-shadow: 0 4px 10px rgba(13, 122, 111, 0.24);
+}
+
+/* ---- Formulario --------------------------------------------------------- */
+
+.formulario {
+  background: var(--blanco);
+  border: var(--borde);
+  border-radius: var(--radio);
+  padding: clamp(1.5rem, 3vw, 2rem);
+  box-shadow: var(--sombra-alta);
+}
+
+.formulario h3 {
+  margin-bottom: 1.2rem;
+}
+
+.formulario label {
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.formulario label span {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--tinta-suave);
+}
+
+.formulario input,
+.formulario textarea {
+  width: 100%;
+  padding: 0.8rem 0.95rem;
+  border: var(--borde);
+  border-radius: var(--radio-chico);
+  background: var(--crema);
+  color: var(--tinta);
+  font: inherit;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.formulario input:focus,
+.formulario textarea:focus {
+  outline: none;
+  background: var(--blanco);
+  border-color: var(--verde);
+  box-shadow: 0 0 0 4px rgba(13, 122, 111, 0.14);
+}
+
+.formulario textarea {
+  resize: vertical;
+  min-height: 6.5rem;
+}
+
+.formulario button {
+  width: 100%;
+  margin-top: 0.35rem;
+  padding: 0.95rem 1.4rem;
+  border: none;
+  border-radius: 999px;
+  background: var(--verde);
+  color: #fff;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(13, 122, 111, 0.22);
+  transition: background 0.2s ease, transform 0.18s ease;
+}
+.formulario button:hover {
+  background: #0a6b61;
+  transform: translateY(-2px);
+}
+.formulario button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+  transform: none;
+}
+
+.resultado {
+  margin: 0.9rem 0 0;
+  font-size: 0.94rem;
+  min-height: 1.4em;
+}
+.resultado.ok {
+  color: var(--verde);
+  font-weight: 600;
+}
+.resultado.error {
+  color: #b4402f;
+}
+
+/* ---- Contacto ----------------------------------------------------------- */
+
+.direccion {
+  margin: 0 0 1.4rem;
+  font-style: normal;
+  font-size: 1.1rem;
+  line-height: 1.55;
+}
+
+.lista-contacto {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.lista-contacto li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.lista-icono {
+  display: grid;
+  place-items: center;
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  background: var(--verde-tenue);
+  color: var(--verde);
+}
+.lista-icono svg {
+  width: 1.2rem;
+  height: 1.2rem;
+}
+
+/* ---- Pie ---------------------------------------------------------------- */
+
+footer {
+  padding: 2.6rem 0 5rem;
+  background: var(--tinta);
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.92rem;
+}
+footer p {
+  margin: 0 0 0.4rem;
+}
+
+.pendientes {
+  color: var(--acento);
+  font-weight: 600;
+}
+.pendientes:empty {
+  display: none;
+}
+
+/* ---- Barra de abajo en el celular ---------------------------------------- */
+
+.barra-movil {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 50;
+  display: none;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem calc(0.7rem + env(safe-area-inset-bottom));
+  background: rgba(251, 250, 246, 0.94);
+  backdrop-filter: blur(12px);
+  border-top: var(--borde);
+}
+.barra-movil .boton {
+  flex: 1;
+  justify-content: center;
+}
+
+/* ---- Al aparecer -------------------------------------------------------- */
+
+/* Las cosas entran con una transition corta cuando van apareciendo. Si la
+   persona tiene el sistema en "reducir movimiento", no se mueven nada: una
+   animación para quien pidió no tener animaciones es una falta de respeto. */
+.aparece {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.aparece.visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .aparece {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---- Celular ------------------------------------------------------------ */
+
+@media (max-width: 880px) {
+  .portada-caja,
+  .columnas,
+  .columnas-turno {
+    grid-template-columns: 1fr;
+  }
+
+  .portada-caja {
+    text-align: center;
+  }
+  .portada .botones,
+  .bajada,
+  .portada-caja .horario,
+  .portada-caja .telefono-visible {
+    margin-inline: auto;
+  }
+  .portada .botones {
+    justify-content: center;
+  }
+  .horario {
+    justify-content: center;
+  }
+  .portada-retrato {
+    order: -1;
+  }
+  .retrato-marco {
+    width: min(72%, 15rem);
+  }
+  .bajada {
+    max-width: none;
+  }
+
+  /* En el celular la barra de arriba estorba: el botón de pedir turno está
+     siempre abajo, al alcance del pulgar. */
+  .barra {
+    display: none;
+  }
+  .barra-movil {
+    display: flex;
+  }
+  .marca {
+    margin-bottom: 0.75rem;
+  }
+}
+
+@media (max-width: 420px) {
+  body {
+    font-size: 1rem;
+  }
+  .botones {
+    flex-direction: column;
+  }
+  .botones .boton {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* ---- Impresión ---------------------------------------------------------- */
+
+/* Si alguien imprime la página, que salga el contenido y nada más. */
+@media print {
+  .barra,
+  .barra-movil,
+  .portada-luz,
+  .botones,
+  .formulario button,
+  .pendientes {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+  .portada {
+    background: none;
+    padding: 0 0 1rem;
+  }
+  main > section,
+  .alternado {
+    padding: 1rem 0;
+    background: none;
+    border: 0;
+  }
+  .tarjeta {
+    box-shadow: none;
+    border: 1px solid #ccc;
+  }
+  .aparece {
+    opacity: 1;
+    transform: none;
+  }
+}
+/* El logo va arriba de todo, antes del nombre. Es lo primero que ve el que
+   entra: dice de quién es la página antes de que lea una sola palabra. */
+.logo {
+  display: block;
+  width: min(280px, 62vw);
+  height: auto;
+  margin: 0 auto 1.5rem;
+}
